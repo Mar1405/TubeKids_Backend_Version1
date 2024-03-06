@@ -1,2 +1,2 @@
 # TubeKids_Backend_Version1
-Aplicación para visualizar contenido de youtube o otro medio
+Aplicación web para padres que permita seleccionar los contenidos que sus hij@s tengan permiso para ver, estos contenidos podrán ser videos de youtube o videos que el padre de familia o responsable mayor de edad suba a su lista de videos.
