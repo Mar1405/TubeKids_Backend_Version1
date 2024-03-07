@@ -19,11 +19,11 @@ const app = express();
 app.use(express.json());
 
 const {
-  tubeKidsPut,
-  tubeKidsPost,
-  tubeKidsGet,
-  tubeKidsDelete,
-} = require("./controllers/tubeKidsController.js");
+  videoPost,
+  videoGet,
+  videoDelete,
+  videoUpdate,
+} = require("./controllers/videosController.js");
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -38,10 +38,10 @@ app.use(
 );
 
 // listen to the task request
-app.get("/api/tubeKids", tubeKidsGet);
-app.post("/api/tubeKids", tubeKidsPost);
-app.put("/api/tubeKids", tubeKidsPut);
-app.delete("/api/tubeKids", tubeKidsDelete);
+app.get("/api/videos", videoGet);
+app.post("/api/videos", videoPost);
+app.put("/api/videos", videoUpdate);
+app.delete("/api/videos", videoDelete);
 
 app.listen(3000, () => {
   console.log(`Server Started at ${3000}`);

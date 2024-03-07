@@ -15,4 +15,4 @@ const carreraSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("TubeKidsTest", TubeKidsSchema);
+module.exports = mongoose.model("videos", videosSchema);
