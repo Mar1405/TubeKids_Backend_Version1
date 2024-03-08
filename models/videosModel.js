@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const carreraSchema = new mongoose.Schema({
+const videosSchema = new mongoose.Schema({
   nombre: {
     required: true,
     type: String,
   },
-  URL: {
+  url: {
     required: true,
     type: String,
   },
