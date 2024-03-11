@@ -9,9 +9,9 @@ const Video = require('../models/videosModel');
 
 
 const videoPost = async (req, res) => {
-    const { nombre, url } = req.body;
+    const { nombre, url, descripcion } = req.body;
     try {
-        const newVideo = new Video({ nombre, url });
+        const newVideo = new Video({ nombre, url, descripcion });
         const savedVideo = await newVideo.save();
         res.status(201).json({ video: savedVideo, location: `/api/videos/${savedVideo._id}` });
     } catch (error) {
@@ -67,10 +67,10 @@ const videoDelete = async (req, res) => {
  */
 const videoUpdate = async (req, res) => {
     const { id } = req.params; 
-    const { nombre, url } = req.body;
+    const { nombre, url, descripcion } = req.body;
     try {
         // Busca el video por su ID
-        const updatedVideo = await Video.findByIdAndUpdate(id, { nombre, url }, { new: true });
+        const updatedVideo = await Video.findByIdAndUpdate(id, { nombre, url, descripcion }, { new: true });
         if (!updatedVideo) {
             return res.status(404).json({ error: 'El video no existe' });
         }

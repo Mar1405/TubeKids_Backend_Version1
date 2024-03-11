@@ -43,6 +43,10 @@ app.post("/api/videos", videoPost);
 app.put("/api/videos", videoUpdate);
 app.delete("/api/videos", videoDelete);
 
-app.listen(3000, () => {
-  console.log(`Server Started at ${3000}`);
+app.get('/', (req, res) => {
+  res.end("Bienvenidos al servidor backend TubeKids Version 1")
+})
+
+app.listen(5000, () => {
+  console.log(`Server Started at ${5000}`);
 });
