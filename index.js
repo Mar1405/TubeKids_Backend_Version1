@@ -25,6 +25,13 @@ const {
   videoUpdate,
 } = require("./controllers/videosController.js");
 
+const {
+  registroPost,
+  registroGet,
+  registroDelete,
+  registroUpdate,
+} = require("./controllers/registroController.js");
+
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -37,11 +44,16 @@ app.use(
   })
 );
 
-// listen to the task request
+// Rutas de Videos
 app.get("/api/videos", videoGet);
 app.post("/api/videos", videoPost);
 app.put("/api/videos", videoUpdate);
-app.delete("/api/videos", videoDelete);
+app.delete("/api/videos/:id", videoDelete);
+
+app.post("/api/registros", registroPost); // Ruta para crear un nuevo registro
+app.get("/api/registros", registroGet); // Ruta para obtener todos los registros
+app.delete("/api/registros/:id", registroDelete); // Ruta para eliminar un registro por su ID
+app.put("/api/registros/:id", registroUpdate); // Ruta para actualizar un registro por su ID
 
 app.get('/', (req, res) => {
   res.end("Bienvenidos al servidor backend TubeKids Version 1")
