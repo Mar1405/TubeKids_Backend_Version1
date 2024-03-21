@@ -30,7 +30,10 @@ const {
   registroGet,
   registroDelete,
   registroUpdate,
+  login,
 } = require("./controllers/registroController.js");
+
+const registroController = require("./controllers/registroController.js");
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -54,6 +57,9 @@ app.post("/api/registros", registroPost); // Ruta para crear un nuevo registro
 app.get("/api/registros", registroGet); // Ruta para obtener todos los registros
 app.delete("/api/registros/:id", registroDelete); // Ruta para eliminar un registro por su ID
 app.put("/api/registros/:id", registroUpdate); // Ruta para actualizar un registro por su ID
+
+app.post('/api/login', registroController.login); //Ruta para inicio de sesión (login)
+
 
 app.get('/', (req, res) => {
   res.end("Bienvenidos al servidor backend TubeKids Version 1")

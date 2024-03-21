@@ -79,9 +79,37 @@ const registroUpdate = async (req, res) => {
     }
 };
 
+/**
+ * Inicia sesión de usuario
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+const login = async (req, res) => {
+    const { correo, password } = req.body;
+    try {
+        // Buscar el registro del usuario en la base de datos
+        const usuario = await Registro.findOne({ correo, password });
+
+        // Verificar si el usuario existe y la contraseña es correcta
+        if (!usuario) {
+            return res.status(401).json({ error: 'Usuario o contraseña incorrecta' });
+        }
+
+        // Aquí podrías generar un token de sesión y devolverlo en la respuesta si deseas implementar autenticación basada en tokens
+        
+        // Si el usuario y la contraseña son correctos, enviar una respuesta de éxito
+        res.status(200).json({ mensaje: 'Inicio de sesión exitoso' });
+    } catch (error) {
+        console.error('Error en el inicio de sesión:', error);
+        res.status(500).json({ error: 'Hubo un error en el inicio de sesión' });
+    }
+};
+
 module.exports = {
     registroPost,
     registroGet,
     registroDelete,
-    registroUpdate
+    registroUpdate,
+    login
 };
