@@ -45,10 +45,10 @@ app.use(
 );
 
 // Rutas de Videos
-app.get("/api/videos", videoGet);
-app.post("/api/videos", videoPost);
-app.put("/api/videos", videoUpdate);
-app.delete("/api/videos/:id", videoDelete);
+app.get("/api/videos", videoGet); // Ruta para crear un nuevo video
+app.post("/api/videos", videoPost); // Ruta para obtener todos los videos
+app.put("/api/videos/:id", videoUpdate); // Ruta para actualizar un video por su ID
+app.delete("/api/videos/:id", videoDelete); // Ruta para eliminar un video por su ID
 
 app.post("/api/registros", registroPost); // Ruta para crear un nuevo registro
 app.get("/api/registros", registroGet); // Ruta para obtener todos los registros

@@ -6,8 +6,6 @@ const Video = require('../models/videosModel');
  * @param {*} req
  * @param {*} res
  */
-
-
 const videoPost = async (req, res) => {
     const { nombre, url, descripcion } = req.body;
     try {
@@ -16,7 +14,7 @@ const videoPost = async (req, res) => {
         res.status(201).json({ video: savedVideo, location: `/api/videos/${savedVideo._id}` });
     } catch (error) {
         console.error('Error al guardar el video:', error);
-        res.status(500).json({ error: 'Hubo un error al guardar el video' });
+        res.status(500).json({ error: 'Hubo un error al guardar el video. Por favor, intenta de nuevo más tarde.' });
     }
 };
 
@@ -25,17 +23,15 @@ const videoPost = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-
 const videoGet = async (req, res) => {
     try {
         const videos = await Video.find();
         res.json(videos);
     } catch (error) {
         console.error('Error al obtener videos:', error);
-        res.status(500).json({ error: 'Hubo un error al obtener los videos' });
+        res.status(500).json({ error: 'Hubo un error al obtener los videos. Por favor, intenta de nuevo más tarde.' });
     }
 };
-
 
 /**
  * Elimina el video
@@ -43,19 +39,18 @@ const videoGet = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-
 const videoDelete = async (req, res) => {
     const { id } = req.params; // Obtener el ID desde la ruta
     try {
         const deletedVideo = await Video.findByIdAndDelete(id);
         if (!deletedVideo) {
-            res.status(404).json({ error: 'El video no existe' });
+            res.status(404).json({ error: 'El video que intentas eliminar no existe.' });
         } else {
             res.json({ message: 'El video ha sido eliminado correctamente' });
         }
     } catch (error) {
         console.error('Error al eliminar el video:', error);
-        res.status(500).json({ error: 'Hubo un error al eliminar el video' });
+        res.status(500).json({ error: 'Hubo un error al eliminar el video. Por favor, intenta de nuevo más tarde.' });
     }
 };
 
@@ -73,7 +68,7 @@ const videoUpdate = async (req, res) => {
         // Verificar si el video existe en la base de datos
         const video = await Video.findById(id);
         if (!video) {
-            return res.status(404).json({ message: 'Video no encontrado' });
+            return res.status(404).json({ error: 'El video que intentas actualizar no existe.' });
         }
 
         // Actualizar la URL de YouTube
@@ -99,7 +94,7 @@ const videoUpdate = async (req, res) => {
     } catch (error) {
         // Manejar errores
         console.error('Error al actualizar el video:', error);
-        return res.status(500).json({ error: 'Error al actualizar el video' });
+        return res.status(500).json({ error: 'Hubo un error al actualizar el video. Por favor, intenta de nuevo más tarde.' });
     }
 };
 

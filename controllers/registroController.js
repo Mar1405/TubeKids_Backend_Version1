@@ -14,7 +14,7 @@ const registroPost = async (req, res) => {
         res.status(201).json({ registro: registroGuardado, mensaje: 'Registro exitoso' });
     } catch (error) {
         console.error('Error al guardar el registro:', error);
-        res.status(500).json({ error: 'Hubo un error al guardar el registro' });
+        res.status(500).json({ error: 'Hubo un error al guardar el registro. Por favor, intenta de nuevo más tarde.' });
     }
 };
 
@@ -30,7 +30,7 @@ const registroGet = async (req, res) => {
         res.json(registros);
     } catch (error) {
         console.error('Error al obtener los registros:', error);
-        res.status(500).json({ error: 'Hubo un error al obtener los registros' });
+        res.status(500).json({ error: 'Hubo un error al obtener los registros. Por favor, intenta de nuevo más tarde.' });
     }
 };
 
@@ -45,13 +45,13 @@ const registroDelete = async (req, res) => {
     try {
         const registroEliminado = await Registro.findByIdAndDelete(id);
         if (!registroEliminado) {
-            res.status(404).json({ error: 'El registro no existe' });
+            res.status(404).json({ error: 'El registro que intentas eliminar no existe.' });
         } else {
-            res.json({ mensaje: 'Registro eliminado exitosamente' });
+            res.json({ mensaje: 'Registro eliminado exitosamente.' });
         }
     } catch (error) {
         console.error('Error al eliminar el registro:', error);
-        res.status(500).json({ error: 'Hubo un error al eliminar el registro' });
+        res.status(500).json({ error: 'Hubo un error al eliminar el registro. Por favor, intenta de nuevo más tarde.' });
     }
 };
 
@@ -70,12 +70,12 @@ const registroUpdate = async (req, res) => {
             { new: true }
         );
         if (!registroActualizado) {
-            return res.status(404).json({ error: 'El registro no existe' });
+            return res.status(404).json({ error: 'El registro que intentas actualizar no existe.' });
         }
         res.json(registroActualizado);
     } catch (error) {
         console.error('Error al actualizar el registro:', error);
-        res.status(500).json({ error: 'Hubo un error al actualizar el registro' });
+        res.status(500).json({ error: 'Hubo un error al actualizar el registro. Por favor, intenta de nuevo más tarde.' });
     }
 };
 
